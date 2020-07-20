@@ -145,13 +145,8 @@ async function processWithTextApi([options, pages, stylesheets]) {
         /* Try and construct a helpful error message */
         throw utility.parseErrorMessage(err, cssStr);
     }
-    return uncss(pages, pcss, options.ignore, options.ignoreHtmlClass).then(([css, rep]) => {
-        let newCssStr = '';
-        postcss.stringify(css, (result) => {
-            newCssStr += result;
-        });
 
-    const [css, rep] = await uncss(pages, pcss, options.ignore);
+    const [css, rep] = await uncss(pages, pcss, options.ignore, options.ignoreHtmlClass);
     let newCssStr = '';
     postcss.stringify(css, result => {
         newCssStr += result;
